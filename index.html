@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<title>Gabon - Covid-19</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="gabon_json.js"></script>
+
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right w3-small">V-test-202004</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="corona.png" class="w3-circle w3-margin-right" style="width:46px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span>Coronavirus <strong>(Covid-19)</strong></span><br>
+      <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
+      <span class="w3-opacity w3-small">Source : OMS, DXY</span>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Tableau de bord</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Fermer le Menu</a>
+    <a href="#situation_gab" class="w3-bar-item w3-button w3-padding " onclick="w3_close()"><i class="fa fa-eye fa-fw"></i>  Situation au Gabon</a>
+    <a href="#afrique" class="w3-bar-item w3-button w3-padding" onclick="w3_close()" ><i class="fa fa-users fa-fw" ></i>  Afrique</a>
+    <a href="#monde" class="w3-bar-item w3-button w3-padding" onclick="w3_close()"><i class="fa fa-users fa-fw" ></i>  Dans le monde</a>
+    <a href="#stats_general" class="w3-bar-item w3-button w3-padding" onclick="w3_close()"><i class="fa fa-bullseye fa-fw" ></i>  Statistiques générales</a>
+    <a href="#conseils" class="w3-bar-item w3-button w3-padding" onclick="w3_close()"><i class="fa fa-bell fa-fw" ></i>  (COVID-19): conseils au grand public</a>
+    <a href="#stats_gab" class="w3-bar-item w3-button w3-padding" onclick="w3_close()"><i class="fa fa-bank fa-fw" ></i>  Le Gabon en statistiques</a>
+
+
+    <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br> -->
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <div id="situation_gab" style="height:11px"></div>
+  <header class="w3-container" style="padding-top:22px">
+    <div id=""><h5><b><i class="fa fa-dashboard"></i> Situation au Gabon</b></h5></div>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+        <h4>CAS ACTIFS</h4>
+        <div class="w3-right">
+          <div id="currentConfirmedCount" style="font-size:30px"></div>
+        </div>
+        <div class="w3-clear"></div>
+        
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <!-- <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div> -->
+        <h4>TOTAL CONFIRMÉS</h4>
+        <div class="w3-right">
+          <div id="confirmedCount" style="font-size:30px"></div>
+        </div>
+        <div class="w3-clear"></div>
+        
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <!-- <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div> -->
+        <h4>MORT</h4>
+        <div class="w3-right">
+          <div id="deadCount" style="font-size:30px"></div>
+        </div>
+        <div class="w3-clear"></div>
+        
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-text-white w3-padding-16">
+        <!-- <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div> -->
+        <h4>GUÉRIS</h4>
+        <div class="w3-right">
+          <div id="curedCount" style="font-size:30px"></div>
+        </div>
+        <div class="w3-clear"></div> 
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <!-- <div class="w3-third">
+        <h5>Regions</h5>
+        <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+      </div> -->
+      <div id="afrique" style="height:37px"></div>
+      <div class="w3-twothird" >
+        <h5>Afrique</h5>
+
+
+        <div class="w3-responsive">
+          <table class="w3-table-all">
+          <tr>
+            <th>Pays/Région</th>
+            <th>Actifs</th>
+            <th>Confirmés</th>
+            <th>Mort</th>
+            <th>Guéris</th>
+          </tr>
+          <tr>
+            <td>Cameroun</td>
+            <td><div id="cmr_currentConfirmedCount"></div></td>
+            <td><div id="cmr_confirmedCount"></div></td>
+            <td><div id="cmr_deadCount"></div></td>
+            <td><div id="cmr_curedCount"></div></td>
+          </tr>
+          <tr>
+            <td>Afrique du Sud</td>
+            <td><div id="zaf_currentConfirmedCount"></div></td>
+            <td><div id="zaf_confirmedCount"></div></td>
+            <td><div id="zaf_deadCount"></div></td>
+            <td><div id="zaf_curedCount"></div></td>
+          </tr>
+          <tr>
+            <td>Maroc</td>
+            <td><div id="mar_currentConfirmedCount"></div></td>
+            <td><div id="mar_confirmedCount"></div></td>
+            <td><div id="mar_deadCount"></div></td>
+            <td><div id="mar_curedCount"></div></td>
+          </tr>
+          </table>
+        </div>
+
+        
+      </div>
+
+      <div class="w3-twothird">
+        <div id="monde" style="height:37px"></div>
+
+        <h5>Dans le monde</h5>
+
+
+        <div class="w3-responsive">
+          <table class="w3-table-all">
+          <tr>
+            <th>Pays/Région</th>
+            <th>Actifs</th>
+            <th>Confirmés</th>
+            <th>Mort</th>
+            <th>Guéris</th>
+          </tr>
+          <tr>
+            <td>France</td>
+            <td><div id="fra_currentConfirmedCount"></div></td>
+            <td><div id="fra_confirmedCount"></div></td>
+            <td><div id="fra_deadCount"></div></td>
+            <td><div id="fra_curedCount"></div></td>
+          </tr>
+          <tr>
+            <td>Chine</td>
+            <td><div id="chn_currentConfirmedCount"></div></td>
+            <td><div id="chn_confirmedCount"></div></td>
+            <td><div id="chn_deadCount"></div></td>
+            <td><div id="chn_curedCount"></div></td>
+          </tr>
+          <tr>
+            <td>États-Unis</td>
+            <td><div id="usa_currentConfirmedCount"></div></td>
+            <td><div id="usa_confirmedCount"></div></td>
+            <td><div id="usa_deadCount"></div></td>
+            <td><div id="usa_curedCount"></div></td>
+          </tr>
+          </table>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="w3-container">
+
+    <button class="w3-button w3-dark-grey"><a href="https://covid19.who.int/" target="_blank">Plus d'infos sur le site de l'OMS</a>  <i class="fa fa-arrow-right"></i></button>
+  </div>
+
+  <!-- <hr> -->
+  <div class="w3-container">
+    <div id="conseils" style="height:37px"></div>
+
+    <h5><strong>(COVID-19): conseils au grand public</strong></h5>
+    <h5>Mesures de protection essentielles contre le nouveau coronavirus</h5>
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img src="conseil1.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Se laver fréquemment les mains </h4>
+        <h4><span class="w3-opacity w3-medium">Se laver fréquemment les mains avec une solution hydroalcoolique ou à l’eau et au savon</span></h4>
+        <p>Se laver les mains avec une solution hydroalcoolique ou à l’eau et au savon tue le virus s’il est présent sur vos mains.</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img src="conseil2.png" style="width:160px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Éviter les contacts proches </h4>
+        <h4><span class="w3-opacity w3-medium">Maintenir une distance d’au moins 1 mètre avec les autres personnes, en particulier si elles toussent, éternuent ou ont de la fièvre.</span></h4>
+        <p>Lorsqu’une personne infectée par un virus respiratoire, comme le COVID-19, tousse ou éternue, elle projette de petites gouttelettes contenant le virus. Si vous êtes trop près, vous pouvez inhaler le virus.</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img src="conseil3.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Éviter de se toucher les yeux, le nez et la bouche.</h4>
+        <h4><span class="w3-opacity w3-medium">Les mains sont en contact avec de nombreuses surfaces qui peuvent être contaminées par le virus.</span></h4>
+        <p>Si vous vous touchez les yeux, le nez ou la bouche, vous risquez d’être en contact avec le virus présent sur ces surfaces.</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img src="conseil4.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Respecter les règles d’hygiène respiratoire </h4>
+        <h4><span class="w3-opacity w3-medium">Se couvrir la bouche et le nez en cas de toux ou d’éternuement permet d’éviter la propagation des virus et autres agents pathogènes.</span></h4>
+        <p>Se couvrir la bouche et le nez avec le pli du coude ou avec un mouchoir en cas de toux ou d’éternuement – jeter le mouchoir immédiatement après dans une poubelle fermée et se laver les mains avec une solution hydroalcoolique ou à l’eau et au savon.</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img src="conseil5.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Tenez-vous informé et suivez les conseils de votre médecin </h4>
+        <h4><span class="w3-opacity w3-medium">Tenez-vous au courant des dernières évolutions concernant le COVID-19. Suivez les conseils de votre médecin, des autorités de santé nationales et locales ou de votre employeur pour savoir comment vous protéger et protéger les autres du COVID-19. </span></h4>
+        <p>Ce sont les autorités nationales et locales qui disposent des informations les plus récentes sur la propagation ou non du COVID-19 dans la région où vous vous trouvez. Elles sont les mieux placées pour expliquer ce que les personnes dans votre région devraient faire pour se protéger. </p><br>
+      </div>
+    </div>
+
+  
+  </div>
+  
+  <div id="stats_gab" style="height:37px"></div>
+
+  <div class="w3-container ">  <h5><strong>Le Gabon en statisques</strong></h5>
+</div>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">POPULATION</h5>
+        <p>Population totale (2019): 2,200,000</p>
+        <p>Revenu national brut par habitant ($ internationaux PPA, 2013): 17,220</p>
+        <p>Espérance de vie à la naissance h/f (années, 2016): 65/68</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">QUOTIENTS</h5>
+        <p>Quotient de mortalité infanto-juvénile (pour 1000 naissances vivantes, 2018): 45</p>
+        <p>Quotient de mortalité 15-60 ans h/f (pour 1000, 2016):  239/201</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">DÉPENSES SANTÉ</h5>
+        <p>Dépenses totales consacrées à la santé par habitant ($ int., 2014): 599</p>
+        <p>Dépenses totales consacrées à la santé en % du PIB (2014):  3.4</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>RESTEZ CHEZ VOUS.</h4>
+    <p>Powered by <a href="https://www.instagram.com/knectt_7/" target="_blank">SCHONECT</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+<script>
+// Gabon
+document.getElementById("currentConfirmedCount").innerHTML = gab_currentConfirmedCount;
+document.getElementById("confirmedCount").innerHTML = gab_confirmedCount;
+document.getElementById("deadCount").innerHTML = gab_deadCount;
+document.getElementById("curedCount").innerHTML = gab_curedCount;
+
+// South Africa
+document.getElementById("zaf_currentConfirmedCount").innerHTML = zaf_currentConfirmedCount;
+document.getElementById("zaf_confirmedCount").innerHTML = zaf_confirmedCount;
+document.getElementById("zaf_deadCount").innerHTML = zaf_deadCount;
+document.getElementById("zaf_curedCount").innerHTML = zaf_curedCount;
+
+
+// Cameroun
+document.getElementById("cmr_currentConfirmedCount").innerHTML = cmr_currentConfirmedCount;
+document.getElementById("cmr_confirmedCount").innerHTML = cmr_confirmedCount;
+document.getElementById("cmr_deadCount").innerHTML = cmr_deadCount;
+document.getElementById("cmr_curedCount").innerHTML = cmr_curedCount;
+
+// Morocco
+document.getElementById("mar_currentConfirmedCount").innerHTML = mar_currentConfirmedCount;
+document.getElementById("mar_confirmedCount").innerHTML = mar_confirmedCount;
+document.getElementById("mar_deadCount").innerHTML = mar_deadCount;
+document.getElementById("mar_curedCount").innerHTML = mar_curedCount;
+
+// France
+document.getElementById("fra_currentConfirmedCount").innerHTML = fra_currentConfirmedCount;
+document.getElementById("fra_confirmedCount").innerHTML = fra_confirmedCount;
+document.getElementById("fra_deadCount").innerHTML = fra_deadCount;
+document.getElementById("fra_curedCount").innerHTML = fra_curedCount;
+
+// China
+document.getElementById("chn_currentConfirmedCount").innerHTML = chn_currentConfirmedCount;
+document.getElementById("chn_confirmedCount").innerHTML = chn_confirmedCount;
+document.getElementById("chn_deadCount").innerHTML = chn_deadCount;
+document.getElementById("chn_curedCount").innerHTML = chn_curedCount;
+
+// USA
+document.getElementById("usa_currentConfirmedCount").innerHTML = usa_currentConfirmedCount;
+document.getElementById("usa_confirmedCount").innerHTML = usa_confirmedCount;
+document.getElementById("usa_deadCount").innerHTML = usa_deadCount;
+document.getElementById("usa_curedCount").innerHTML = usa_curedCount;
+
+
+</script> 
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
